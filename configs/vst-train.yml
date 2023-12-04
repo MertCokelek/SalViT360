@@ -1,0 +1,94 @@
+dataparallel: [0]
+Config: 'VST-LN-T8'
+
+wandb:
+    project: "SalViT360"
+    name: ""
+
+phase:
+    name: 'train'  # train, val
+
+network:
+    transformer:
+        depth: 6
+        num_heads: 8
+        mlp_dim: 4
+        ff_dropout: 0.2
+        attn_dropout: 0.2
+        multihead: True
+        new_posemb: True
+
+    decoder:
+        mode: tangent  # erp | hybrid | tangent
+        norm_layer: layernorm  # layernorm | none
+
+    use_amp: False
+
+    artifact_cleaner:
+        use: False
+        DnResidual: False
+
+save: "~/Desktop/Summer2023/SalViT360/CkptDir/"
+
+train:
+    train_bs: 16
+    val_bs: 16
+
+    use_data_augmentation: True
+    val_subset: 0.3
+
+    epoch:
+        start: 1
+        n_epochs: 5
+
+    optim_algorithm: AdamW
+    sched_algorithm: CosineAnnealingWarmRestarts
+
+    optim:
+        AdamW:
+            lr: 0.00001
+            betas: [ 0.9, 0.999 ]
+            weight_decay: 0.01
+        SGD:
+            lr: 0.0003
+            nesterov: True
+            momentum: 0.9
+        Adam:
+            lr: 0.0003
+            betas: [0.9, 0.999]
+            weight_decay: 0.
+        RAdam:
+            lr: 0.0003
+            betas: [ 0.9, 0.999 ]
+    sched:
+        MultiStepLR:
+            milestones: [2, 4, 8]
+            gamma: 0.5
+            verbose: True
+
+        ReduceLROnPlateau:
+            verbose: True
+            patience: 1
+            factor: 0.1
+
+        CosineAnnealingWarmRestarts:
+            T_0: 200
+            T_mult: 1
+            eta_min: 5e-7
+            last_epoch: -1
+            verbose: True
+
+    criterion:
+        use_smse: True
+        weights:
+            kl: 1.
+            cc: 1.
+            nss: 0.05  # weight of SMSE as well
+
+tangent_images:
+    fov: [80]  # Default: single scale. For multi scale, use e.g. [80, 120]
+    nrows: [4] # [4, 3]
+    npatches: [18]
+
+    patch_size:
+        e2p: [224]

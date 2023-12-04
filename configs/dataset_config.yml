@@ -1,0 +1,20 @@
+n_jobs: 4
+num_workers: 4
+
+
+videoclip:
+  use: True
+  T: 8  # Number of consecutive frames for forward-prop.
+
+  overlap: 8
+  root: /home/mertcokelek/Desktop/VR-EyeTrackingClips/1-second
+  gt_fps_dict: /home/mertcokelek/OmniSal/saliency/dataset/vreyetracking/preprocessed_16fps_2K_fps_dict_according_to_gts.pkl
+
+
+w: 1920  # For OmniSal, we used 1920x960.
+h: 960
+
+path_gts: "/home/mertcokelek/Desktop/OmniSal/VR-EyeTracking/fix_density_map"
+path_gtf: "/home/mertcokelek/Desktop/OmniSal/VR-EyeTracking/fixation_downsampled_480_960"
+name: "VREyeTracking"
+

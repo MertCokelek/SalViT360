@@ -1,0 +1,56 @@
+Config: 'VAC-CC-SIM'
+
+wandb:
+    project: "OmniAVSAL"
+    name: ""
+
+phase:
+    name: 'val'  # train, val
+
+network:
+    backbone: VST
+    resume: "/home/mertcokelek/cluster/scratch/users/mcokelek21/Desktop/Summer2023/SalViT360/CkptDir/Config VAC-CC-SIM/Epoch_9.pt"
+
+    transformer:
+        depth: 6
+        num_heads: 8
+        mlp_dim: 4
+        ff_dropout: 0.2
+        attn_dropout: 0.2
+        multihead: True
+
+        new_posemb: True
+
+    decoder:
+        mode: tangent  # erp | hybrid | tangent
+        norm_layer: layernorm  # layernorm | none
+
+    use_updated_DST: True
+    use_amp: False
+
+save: "~/Desktop/Summer2023/OmniAVSAL/CkptDir/"
+
+train:
+    train_bs: 12
+    val_bs: 12
+
+    use_data_augmentation: True
+    val_subset: 1.
+
+    epoch:
+        start: 1
+        n_epochs: 5
+
+    optim_algorithm: AdamW
+    sched_algorithm: CosineAnnealingWarmRestarts
+
+    criterion:
+        vac: True
+
+tangent_images:
+    fov: [80, 120]
+    nrows: [4, 3] 
+    npatches: [18, 10]
+
+    patch_size:
+        e2p: [224, 224]
