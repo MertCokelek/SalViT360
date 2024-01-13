@@ -34,6 +34,7 @@ python main.py
 
 ## Inference
 See [**Inference.iypnb**](https://github.com/MertCokelek/SalViT360/blob/main/Inference.ipynb)
+####  Checkpoints are available in [**Google Drive**](https://drive.google.com/drive/folders/1cJ9ln4sH0IIdv2L-Xcyk6N17_4_7FFOW?usp=sharing)
 
 
 ## <a name="CitingSalViT360"></a>Citing SalViT360
