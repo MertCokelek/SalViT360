@@ -14,6 +14,7 @@ The growing interest in omnidirectional videos (ODVs) that capture the full fiel
 ## Setup
 ```bash
 conda create --name salvit python=3.10.9
+conda activate salvit
 pip install -r requirements.txt
 ```
 
