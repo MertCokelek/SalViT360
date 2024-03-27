@@ -29,7 +29,7 @@ See [training configs](https://github.com/MertCokelek/SalViT360/tree/main/config
 
 ```bash
 python main.py
-    --config configs/vst-train.py
+    --config configs/vst-train.yml
     --dataset configs/dataset_config.yml
     --wandb <online/offline/disabled>
     --gpus <your-gpu-ids>
