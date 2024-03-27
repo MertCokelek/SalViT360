@@ -1,0 +1,8 @@
+dotmap 
+einops
+wandb
+numpy
+matplotlib
+pyyaml
+tqdm
+kornia 
