@@ -13,8 +13,10 @@ The growing interest in omnidirectional videos (ODVs) that capture the full fiel
 
 ## Setup
 ```bash
-conda create --name salvit python=3.10.9
+conda create --name salvit python=3.10
 conda activate salvit
+conda install -c conda-forge ffmpeg
+conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia
 pip install -r requirements.txt
 ```
 
